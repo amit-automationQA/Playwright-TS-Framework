@@ -671,12 +671,6 @@ chmod +x node_modules/.bin/*
 
 ---
 
-## 📝 License
-
-ISC License - Open for modification and distribution
-
----
-
 ## 👤 Contributing
 
 Contributions are welcome! Please follow these guidelines:
