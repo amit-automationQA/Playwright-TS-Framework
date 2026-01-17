@@ -1,6 +1,13 @@
-# Playwright TypeScript Testing Framework
+# 🤖 Playwright TypeScript Testing Framework
 
-A comprehensive, enterprise-grade test automation framework built with **Playwright** and **TypeScript**. This framework supports both **web UI testing** and **API testing** with advanced reporting, data validation, and CI.
+[![Playwright](https://img.shields.io/badge/Playwright-1.57.0-45ba4b?style=for-the-badge&logo=playwright)](https://playwright.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Latest-3178c6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-20-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Allure](https://img.shields.io/badge/Allure-Reports-25c2a0?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9IndoaXRlIi8+PC9zdmc+)](https://docs.qameta.io/allure/)
+[![Jenkins](https://img.shields.io/badge/Jenkins-Supported-D24939?style=for-the-badge&logo=jenkins&logoColor=white)](https://www.jenkins.io/)
+[![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-Supported-2088F0?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/features/actions)
+
+> A scalable and maintainable test automation framework built using Playwright, TypeScript, and integrated with Allure Reports for real-time test reporting. Supports both **Web UI** and **REST API** testing with advanced data validation and CI.
 
 ---
 
@@ -27,15 +34,19 @@ A comprehensive, enterprise-grade test automation framework built with **Playwri
 
 This framework provides a robust foundation for automated testing of web applications and REST APIs. It leverages Playwright's powerful cross-browser capabilities combined with TypeScript's type safety and the popular Page Object Model (POM) pattern for maintainable test code.
 
-**Supports:**
-- ✅ Web UI Testing (Chrome, Firefox, Safari, Edge)
-- ✅ REST API Testing
-- ✅ Data-driven testing with faker.js
-- ✅ JSON Schema validation
-- ✅ Multi-format reporting (Allure, HTML, JUnit, JSON)
-- ✅ CI (GitHub Actions, Jenkins)
-- ✅ Parallel test execution
-- ✅ Cross-browser testing
+## ✨ Why This Framework?
+
+- 🌐 **Cross-browser testing** powered by Playwright (Chromium, Firefox, WebKit)
+- 🎭 **Web UI Testing** - Full-featured browser automation
+- 🔌 **REST API Testing** - Complete API testing capabilities
+- 📊 **Real-time test analytics** with Allure Reports
+- 📸 **Automatic screenshot capture** on test failure
+- 🚀 **Easy CI/CD integration** (GitHub Actions, Jenkins)
+- 📦 **Type-safe** with TypeScript for better code quality
+- ♻️ **Reusable** Page Object Model pattern
+- 🔄 **Parallel execution** for faster test runs
+- 📝 **Data-driven testing** with Faker.js
+- ✅ **JSON Schema validation** for API responses
 
 ---
 
@@ -76,16 +87,17 @@ This framework provides a robust foundation for automated testing of web applica
    - Test data files in JSON format
    - Dynamic data generation in fixtures
 
----
-
-## 🛠️ Tech Stack
-
-| Component | Version | Purpose |
-|-----------|---------|---------|
+--Technology | Version | Purpose |
+|---|---|---|
 | **Playwright** | ^1.57.0 | Browser automation & API testing |
 | **TypeScript** | Latest | Type-safe test code |
 | **Node.js** | 20 | Runtime environment |
-| **Allure** | ^3.4.5 | Advanced test reporting |
+| **Allure** | ^3.4.5 | Advanced test reporting & dashboards |
+| **Faker.js** | ^10.2.0 | Random test data generation |
+| **Luxon** | ^3.7.2 | DateTime handling |
+| **AJV** | ^8.17.1 | JSON Schema validation |
+| **Dotenv** | ^17.2.3 | Environment variable management |
+| **Jest** / **Mocha** | Latest | Test assertions
 | **Faker.js** | ^10.2.0 | Random test data generation |
 | **Luxon** | ^3.7.2 | DateTime handling |
 | **AJV** | ^8.17.1 | JSON Schema validation |
@@ -138,51 +150,39 @@ Playwright-TS-Framework/
 
 ---
 
-## ✅ Prerequisites
+## ⚙️ Setup Instructions
 
-Before setting up the framework, ensure you have:
-
-- **Node.js** (v20 or later) - [Download](https://nodejs.org/)
-- **npm** (v9 or later) - Comes with Node.js
-- **Git** - For version control
-- **Code Editor** - VS Code recommended
-- **Windows/Mac/Linux** - Cross-platform support
-
-### Check Versions
+### 1️⃣ Clone the Repository
 ```bash
-node --version
-npm --version
-git --version
-```
-
----
-
-## 🚀 Installation
-
-### 1. Clone the Repository
-```bash
-git clone <repository-url>
+git clone https://github.com/yourusername/Playwright-TS-Framework.git
 cd Playwright-TS-Framework
 ```
 
-### 2. Install Dependencies
+### 2️⃣ Verify Prerequisites
+```bash
+node --version    # Should be v20 or later
+npm --version     # Should be v9 or later
+git --version
+```
+
+### 3️⃣ Install Dependencies
 ```bash
 npm install
 ```
 
-### 3. Install Playwright Browsers
+### 4️⃣ Install Playwright Browsers
 ```bash
 npx playwright install --with-deps
 ```
 
-### 4. Setup Environment Variables
+### 5️⃣ Configure Environment Variables
 Create a `.env` file in the root directory:
 ```dotenv
 AUTH_USERNAME=admin
 AUTH_PASSWORD=password123
 ```
 
-### 5. Verify Installation
+### 6️⃣ Verify Installation
 ```bash
 npx playwright --version
 npm run test:debug
@@ -234,48 +234,58 @@ Currently configured for **Chromium**. To enable other browsers, uncomment in `p
 
 ---
 
-## 🧪 Running Tests
+## 🚀 Running Tests
 
-### Run All Tests with Regression Tag
+### 🧪 Basic Test Run - Run All Regression Tests
 ```bash
 npm run test
 ```
 
-### Run Tests in Headed Mode (See Browser)
+### 👀 Headed Mode - See Browser Actions
 ```bash
 npm run test:headed
 ```
 
-### Run Tests in Debug Mode
+### 🔧 Debug Mode - Step Through Tests
 ```bash
 npm run test:debug
 ```
 
-### Run Specific Test File
+### 🎯 Run Specific Test File
 ```bash
 npx playwright test tests/webtests/mytest.spec.ts
 ```
 
-### Run Tests with Specific Tag
+### 🏷️ Run Tests by Tag
 ```bash
 npx playwright test --grep @regression
 npx playwright test --grep @api
+npx playwright test --grep @smoke
+npx playwright test --grep "@regression|@smoke"  # Multiple tags
 ```
 
-### Run Tests Serially (One at a time)
+### ⚡ Run Tests in Serial Mode (One at a time)
 ```bash
 npx playwright test --workers=1
 ```
 
-### Run Tests in a Specific Browser
+### 🌐 Run Tests in Specific Browser
 ```bash
 npx playwright test --project=chromium
 npx playwright test --project=firefox
+npx playwright test --project=webkit
 ```
 
-### Run Single Test
+### 🔍 Run Single Test by Name
 ```bash
 npx playwright test -g "Verify Blogspot page URL"
+```
+
+### 📊 Run with Report Generation
+```bash
+npm run test
+npm run allure:generate
+npm run allure:open
 ```
 
 ---
@@ -391,7 +401,7 @@ test('Create Booking @api', async ({
 
 ## 📊 Reporting
 
-### 1. **Allure Reports**
+### 📈 Allure Reports
 
 Modern, interactive test reports with rich visualizations.
 
@@ -406,31 +416,32 @@ npm run allure:open
 ```
 
 **Features:**
-- Interactive dashboards
-- Test timeline
-- Environment info
-- Failure analysis
-- Trend analysis
+- 📊 Interactive dashboards with graphs
+- 📈 Test timeline and trend analysis
+- 🔍 Detailed failure analysis
+- 📸 Screenshots and videos on failure
+- 🏷️ Custom labels and categories
+- 📝 Rich execution history
 
 **Files:**
 - Raw results: `allure-results/`
 - Generated report: `allure-report/`
 
-### 2. **Playwright HTML Report**
+### 🎬 Playwright HTML Report
 
 Built-in Playwright reporting with test details and traces.
 
 **Location:** `reports/playwright-inbuilt-report/index.html`
 
 **Includes:**
-- Test results summary
-- Execution timeline
-- Screenshots on failure
-- Videos on failure
-- Trace recordings
-- Console logs
+- ✅ Test results summary
+- ⏱️ Execution timeline
+- 📸 Screenshots on failure
+- 🎥 Videos on failure
+- 🔍 Trace recordings for debugging
+- 📝 Console logs
 
-### 3. **JUnit XML Report**
+### 📋 JUnit XML Report
 
 CI/CD integration format for test results.
 
@@ -466,44 +477,44 @@ npm run allure:generate && npm run allure:open
 
 ## 🔄 CI/CD Integration
 
-### GitHub Actions
+### 🐙 GitHub Actions
 
 **Workflow File:** `.github/workflows/playwright.yml`
 
 **Triggered on:**
-- Push to `main` branch
-- Pull requests to `main` branch
+- 🔄 Push to `main` branch
+- 🔀 Pull requests to `main` branch
 
-**Jobs:**
-1. Checkout code
-2. Setup Node.js 20
-3. Install dependencies
-4. Install Playwright browsers
-5. Run tests
-6. Upload Allure results
-7. Upload Playwright HTML report
+**Pipeline Stages:**
+1. ✅ Checkout code
+2. 🔧 Setup Node.js 20
+3. 📦 Install dependencies
+4. 🎭 Install Playwright browsers
+5. 🧪 Run tests
+6. 📤 Upload Allure results
+7. 📤 Upload Playwright HTML report
 
-**Artifacts:**
-- `allure-results` - Raw Allure data
+**Artifacts Generated:**
+- `allure-results` - Raw Allure data for reports
 - `playwright-html-report` - HTML test report
 
-### Jenkins
+### 🚀 Jenkins Pipeline
 
 **Pipeline File:** `Jenkinsfile`
 
-**Stages:**
-1. **Checkout** - Clone repository
-2. **Setup Node.js** - Configure Node.js 20
-3. **Install Dependencies** - npm install
-4. **Install Playwright Browsers** - Browser setup
-5. **Run Tests** - Execute test suite
-6. **Generate Allure Report** - Create Allure report
-7. **Post Actions** - Publish reports and artifacts
+**Pipeline Stages:**
+1. ✅ **Checkout** - Clone repository
+2. 🔧 **Setup Node.js** - Configure Node.js 20
+3. 📦 **Install Dependencies** - npm install
+4. 🎭 **Install Playwright Browsers** - Browser setup
+5. 🧪 **Run Tests** - Execute test suite
+6. 📊 **Generate Allure Report** - Create Allure report
+7. 📤 **Publish Reports** - Publish HTML and Allure reports
 
 **Prerequisites:**
-- NodeJS 20 plugin installed
-- HTML Publisher plugin installed
-- JUnit plugin installed
+- ✅ NodeJS 20 plugin installed in Jenkins
+- ✅ HTML Publisher plugin installed
+- ✅ JUnit plugin installed
 
 **Usage:**
 ```groovy
@@ -648,9 +659,9 @@ npm run allure:generate
 ```
 
 #### 7. **Tests Failing Locally but Passing in CI**
-- Check Node.js version matches (`node --version`)
-- Clear node_modules and reinstall (`rm -rf node_modules && npm install`)
-- Clear Playwright cache (`rm -rf ~/Library/Caches/ms-playwright`)
+- 🔄 Check Node.js version matches (`node --version`)
+- 🗑️ Clear node_modules and reinstall (`rm -rf node_modules && npm install`)
+- 🧹 Clear Playwright cache (`rm -rf ~/Library/Caches/ms-playwright`)
 
 #### 8. **Permission Denied Errors (Mac/Linux)**
 ```bash
@@ -660,44 +671,108 @@ chmod +x node_modules/.bin/*
 
 ---
 
-## 📖 Additional Resources
+## 📈 Reports Location
 
-- [Playwright Documentation](https://playwright.dev/docs/intro)
-- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
-- [Faker.js Documentation](https://fakerjs.dev/)
-- [Luxon DateTime](https://moment.github.io/luxon/)
-- [Allure Reports](https://docs.qameta.io/allure/)
-- [AJV JSON Schema Validator](https://ajv.js.org/)
+After running tests, reports are available at:
+
+| Report | Location | Command |
+|--------|----------|---------|
+| **Allure Report** | `allure-report/index.html` | `npm run allure:open` |
+| **Playwright HTML** | `reports/playwright-inbuilt-report/index.html` | `npx playwright show-report` |
+| **JUnit XML** | `reports/playwright-inbuilt-report/junit.xml` | N/A |
+| **JSON Report** | `reports/playwright-inbuilt-report/test-results.json` | N/A |
 
 ---
 
-## 👤 Contributing
+## 📖 Additional Resources
+
+- 📚 [Playwright Documentation](https://playwright.dev/docs/intro)
+- 📘 [TypeScript Handbook](https://www.typescriptlang.org/docs/)
+- 🎲 [Faker.js Documentation](https://fakerjs.dev/)
+- 📅 [Luxon DateTime](https://moment.github.io/luxon/)
+- 📊 [Allure Reports](https://docs.qameta.io/allure/)
+- ✅ [AJV JSON Schema Validator](https://ajv.js.org/)
+- 🎭 [Playwright Best Practices](https://playwright.dev/docs/best-practices)
+
+---
+
+## 🤝 Contributing
 
 Contributions are welcome! Please follow these guidelines:
 
-1. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-2. Commit changes (`git commit -m 'Add AmazingFeature'`)
-3. Push to branch (`git push origin feature/AmazingFeature`)
-4. Open a Pull Request
+1. 🍴 Fork the repository
+2. 💡 Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. 📝 Commit changes (`git commit -m 'Add AmazingFeature'`)
+4. 🔀 Push to branch (`git push origin feature/AmazingFeature`)
+5. 🚀 Open a Pull Request
 
 ---
 
-## 📞 Support
+## 📄 License
+
+ISC License - Feel free to use and share this framework.
+
+---
+
+## 📞 Support & Feedback
 
 For issues, questions, or suggestions:
-- Open an issue on GitHub
-- Check existing documentation
-- Review test examples
-- Consult Playwright docs
+- 🐛 [Open an issue](https://github.com/yourusername/Playwright-TS-Framework/issues)
+- 💬 Check existing documentation
+- 📚 Review test examples in `tests/` directory
+- 🔗 Consult official Playwright docs
 
 ---
 
-**Last Updated:** January 17, 2026
+## 📋 Quick Reference
 
-**Framework Version:** 1.0.0
-
-**Playwright Version:** ^1.57.0
+| Task | Command |
+|------|---------|
+| Install all dependencies | `npm install` |
+| Run all regression tests | `npm run test` |
+| Run tests in headed mode | `npm run test:headed` |
+| Debug mode | `npm run test:debug` |
+| Generate Allure report | `npm run allure:generate` |
+| View Allure report | `npm run allure:open` |
+| Run specific test file | `npx playwright test <path-to-test>` |
+| Run by tag | `npx playwright test --grep @regression` |
+| Show Playwright report | `npx playwright show-report` |
 
 ---
 
-*Happy Testing! 🚀*
+## 🎯 Project Statistics
+
+- **Total Test Files:** 7+ (Web UI + API)
+- **Supported Browsers:** Chromium (Firefox & WebKit available)
+- **Languages:** TypeScript, JSON
+- **Test Runners:** Playwright
+- **Reporting Tools:** Allure, HTML, JUnit, JSON
+- **CI/CD:** GitHub Actions, Jenkins
+
+---
+
+## 🏆 Key Achievements
+
+✅ Enterprise-grade test automation framework  
+✅ Supports both Web UI and API testing  
+✅ Type-safe with TypeScript  
+✅ Multi-format reporting  
+✅ CI/CD ready (GitHub Actions + Jenkins)  
+✅ Parallel test execution  
+✅ Data-driven testing with Faker.js  
+✅ JSON Schema validation  
+✅ Page Object Model pattern  
+✅ Custom fixtures and utilities  
+
+---
+
+**Last Updated:** January 17, 2026  
+**Framework Version:** 1.0.0  
+**Playwright Version:** ^1.57.0  
+**Node.js Version:** 20+  
+
+---
+
+> Made with 🤖✅ for Quality Assurance  
+> 
+> *Happy Testing! 🚀*
