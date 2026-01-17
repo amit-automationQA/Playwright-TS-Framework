@@ -708,12 +708,6 @@ Contributions are welcome! Please follow these guidelines:
 
 ---
 
-## 📄 License
-
-ISC License - Feel free to use and share this framework.
-
----
-
 ## 📞 Support & Feedback
 
 For issues, questions, or suggestions:
