@@ -37,3 +37,11 @@ jobs:
         with:
           name: allure-results
           path: allure-results
+          
+      - name: Upload Playwright HTML report
+        if: success() || failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-html-report
+          path: reports/playwright-inbuilt-report
+
