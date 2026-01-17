@@ -1,6 +1,6 @@
 import { test, expect, Locator } from '@playwright/test';
-import { TestConfig } from '../test.config';
-import { BlogspotPage } from '../pages/BlogspotPage';
+import { TestConfig } from '../../test.config';
+import { BlogspotPage } from '../../pages/BlogspotPage';
 
 let blogspotPage: BlogspotPage;
 
