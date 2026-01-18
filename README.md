@@ -10,6 +10,13 @@
 
 > A scalable and maintainable test automation framework built using Playwright, TypeScript, and integrated with Allure Reports for real-time test reporting. Supports both **Web UI** and **REST API** testing with advanced data validation and CI. Enhanced with **Model Context Protocol (MCP)** for intelligent test planning and generation.
 
+### 🆕 New Here? **[→ START HERE](./START_HERE.md)** ← Click to get oriented!
+
+**Quick Links:**
+- ⚡ [5-Minute Quick Start](./QUICKSTART.md) - Get tests running now
+- 🧠 [MCP Setup Guide](./MCP-SETUP.md) - Setup AI test generation
+- 🤝 [Contributing Guide](./CONTRIBUTING.md) - How to contribute
+
 ---
 
 ## 📋 Table of Contents
