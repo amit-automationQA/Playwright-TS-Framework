@@ -6,8 +6,9 @@
 [![Allure](https://img.shields.io/badge/Allure-Reports-25c2a0?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9IndoaXRlIi8+PC9zdmc+)](https://docs.qameta.io/allure/)
 [![Jenkins](https://img.shields.io/badge/Jenkins-Supported-D24939?style=for-the-badge&logo=jenkins&logoColor=white)](https://www.jenkins.io/)
 [![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-Supported-2088F0?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/features/actions)
+[![MCP Enabled](https://img.shields.io/badge/MCP-Test%20Planning-9333EA?style=for-the-badge)](https://modelcontextprotocol.io/)
 
-> A scalable and maintainable test automation framework built using Playwright, TypeScript, and integrated with Allure Reports for real-time test reporting. Supports both **Web UI** and **REST API** testing with advanced data validation and CI.
+> A scalable and maintainable test automation framework built using Playwright, TypeScript, and integrated with Allure Reports for real-time test reporting. Supports both **Web UI** and **REST API** testing with advanced data validation and CI. Enhanced with **Model Context Protocol (MCP)** for intelligent test planning and generation.
 
 ---
 
@@ -21,6 +22,7 @@
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Running Tests](#running-tests)
+- [Test Planning with MCP](#test-planning-with-mcp)
 - [Test Organization](#test-organization)
 - [Custom Fixtures](#custom-fixtures)
 - [Reporting](#reporting)
@@ -47,6 +49,9 @@ This framework provides a robust foundation for automated testing of web applica
 - 🔄 **Parallel execution** for faster test runs
 - 📝 **Data-driven testing** with Faker.js
 - ✅ **JSON Schema validation** for API responses
+- 🧠 **AI-Powered Test Planning** with Model Context Protocol (MCP)
+- 📋 **Intelligent Test Generation** - Auto-generate tests from test plans
+- 🎯 **Test Plan Management** - Markdown-based test specifications
 
 ---
 
@@ -87,6 +92,13 @@ This framework provides a robust foundation for automated testing of web applica
    - Test data files in JSON format
    - Dynamic data generation in fixtures
 
+### 7. **AI-Powered Test Planning & Generation**
+   - Model Context Protocol (MCP) integration
+   - Intelligent test plan creation from feature descriptions
+   - Automatic test code generation from test plans
+   - Snapshot-based page interaction capture
+   - Dynamic locator generation with safe defaults
+
 --Technology | Version | Purpose |
 |---|---|---|
 | **Playwright** | ^1.57.0 | Browser automation & API testing |
@@ -97,15 +109,277 @@ This framework provides a robust foundation for automated testing of web applica
 | **Luxon** | ^3.7.2 | DateTime handling |
 | **AJV** | ^8.17.1 | JSON Schema validation |
 | **Dotenv** | ^17.2.3 | Environment variable management |
-| **Jest** / **Mocha** | Latest | Test assertions
-| **Faker.js** | ^10.2.0 | Random test data generation |
-| **Luxon** | ^3.7.2 | DateTime handling |
-| **AJV** | ^8.17.1 | JSON Schema validation |
-| **Dotenv** | ^17.2.3 | Environment variable management |
+| **Jest** / **Mocha** | Latest | Test assertions |
 
 ---
 
-## 📁 Project Structure
+## 🧠 Test Planning with MCP
+
+### Overview
+
+The framework integrates **Model Context Protocol (MCP)** for intelligent test planning and automatic test generation. This feature enables you to:
+
+- 📋 Create structured test plans in Markdown format
+- 🤖 Auto-generate Playwright test code from test plans
+- 📸 Capture dynamic page snapshots during test execution
+- 🔍 Generate reliable locators automatically
+- ⚡ Reduce manual test coding effort
+
+### Test Planning Workflow
+
+#### Step 1: Create a Test Plan (Markdown)
+
+Create a `.md` file in the `specs/` folder:
+
+```markdown
+# Dynamic Web Table Test Plan
+
+## Application Overview
+This test plan outlines the testing strategy for the dynamic web table feature.
+
+## Test Scenarios
+
+### Test Suite: Dynamic Web Table Suite
+
+#### Test Case 1: Dynamic Web Table Functionality Test
+**Seed File:** `tests/seed.spec.ts`
+
+**Steps:**
+1. Navigate to the Blogspot page
+2. Verify the presence of the dynamic web table
+3. Check that the table displays the correct number of rows and columns
+4. Test sorting functionality by clicking on the column headers
+5. Verify that the data is sorted correctly for each column
+
+**Expected Results:**
+- The dynamic web table is displayed correctly with all expected data
+- Sorting functionality works as intended
+- Table columns are sortable
+```
+
+#### Step 2: Set Up a Seed File
+
+The seed file (`tests/seed.spec.ts`) contains the initial page setup:
+
+```typescript
+import { test, expect } from '@playwright/test';
+import { TestConfig } from '../test.config';
+import { BlogspotPage } from '../pages/BlogspotPage';
+
+test.describe('Test group', () => {
+  test('seed', async ({ page }) => {
+    const blogspotPage = new BlogspotPage(page);
+    await blogspotPage.navigateToBlogspotPage(TestConfig.APP_URL);
+    await expect.soft(page).toHaveURL(TestConfig.APP_URL);
+  });
+});
+```
+
+#### Step 3: Generate Tests from Plan
+
+The MCP integration analyzes your test plan and:
+
+1. **Reads the test plan** from the Markdown file
+2. **Navigates to the page** using the seed file
+3. **Captures page snapshots** showing available elements and their references
+4. **Generates Playwright test code** with proper locators
+5. **Creates test files** with reliable selectors
+
+#### Step 4: Execute Generated Tests
+
+```bash
+# Run generated tests
+npx playwright test tests/dynamic-web-table.spec.ts
+
+# Run with headed mode to see execution
+npx playwright test tests/dynamic-web-table.spec.ts --headed
+
+# Debug mode
+npx playwright test tests/dynamic-web-table.spec.ts --debug
+```
+
+### Generated Test Example
+
+Once generated, your test looks like this:
+
+```typescript
+// spec: specs/dynamic_web_table_test_plan.md
+// seed: tests/seed.spec.ts
+
+import { test, expect } from '@playwright/test';
+import { TestConfig } from '../test.config';
+import { BlogspotPage } from '../pages/BlogspotPage';
+
+test.describe('Dynamic Web Table Suite', () => {
+  test('Dynamic Web Table Functionality Test', async ({ page }) => {
+    // Setup from seed file
+    const blogspotPage = new BlogspotPage(page);
+    await blogspotPage.navigateToBlogspotPage(TestConfig.APP_URL);
+    await expect.soft(page).toHaveURL(TestConfig.APP_URL);
+
+    // Generated test steps
+    await expect(page.getByText('Dynamic Web Table')).toBeVisible();
+    await expect(page.getByRole('cell', { name: 'Internet Explorer' })).toBeVisible();
+    await expect(page.getByRole('cell', { name: 'Chrome' })).toBeVisible();
+    
+    await page.getByRole('columnheader', { name: 'Network (Mbps)' }).click();
+    
+    await expect(page.getByRole('cell', { name: 'Firefox' })).toBeVisible();
+  });
+});
+```
+
+### MCP Test Generation Features
+
+#### 🎯 Intelligent Locator Generation
+
+The MCP system automatically selects the best locators:
+
+```typescript
+// Prefers role-based locators (most reliable)
+page.getByRole('button', { name: 'Submit' })
+
+// Falls back to text locators when appropriate
+page.getByText('Dynamic Web Table')
+
+// Uses cell references for table elements
+page.getByRole('cell', { name: 'Chrome' })
+```
+
+#### 📸 Page Snapshot Capture
+
+During test generation, page snapshots show:
+
+```yaml
+- Element role, type, and accessibility name
+- Exact locator references for each element
+- Nested element structure
+- All available interactions
+```
+
+#### ✨ Best Practices Built-in
+
+Generated tests follow Playwright best practices:
+
+- ✅ No hard waits (`waitForTimeout`)
+- ✅ Proper async/await patterns
+- ✅ Reliable element locators
+- ✅ Soft assertions for multiple checks
+- ✅ Type-safe with TypeScript
+
+### Practical Example: Dynamic Web Table Tests
+
+**Test Plan File:** `specs/dynamic_web_table_test_plan.md`
+
+```markdown
+# Dynamic Web Table Feature
+
+## Overview
+Tests for the dynamic web table with sorting and data validation.
+
+## Test Suites
+
+### Suite 1: Functionality Tests
+**Seed:** tests/seed.spec.ts
+
+#### Test: Verify Table Display and Sorting
+- Steps:
+  1. Verify dynamic web table is visible
+  2. Check table contains expected browsers (Chrome, Firefox)
+  3. Click Network column header to sort
+  4. Verify sorting was applied
+  
+- Expected Results:
+  - Table displays all expected data rows
+  - Sorting functionality works correctly
+```
+
+**Generated Test File:** `tests/dynamic-web-table.spec.ts`
+
+The MCP system will generate a fully functional test with proper locators and assertions.
+
+### MCP Workflow Best Practices
+
+#### 1. **Clear Test Plan Structure**
+```markdown
+# Feature Name
+## Application Overview
+## Test Scenarios
+### Suite Name
+#### Test Case Name
+- Steps
+- Expected Results
+```
+
+#### 2. **Descriptive Step Names**
+```
+Good: "Verify the dynamic web table displays all expected data"
+Bad: "Check table"
+```
+
+#### 3. **Specific Expected Results**
+```markdown
+Expected Results:
+- The table contains 4 data rows (Chrome, Firefox, System, IE)
+- Each row has 5 columns (Name, Network, Memory, CPU, Disk)
+- Sorting by Network column orders data correctly
+```
+
+#### 4. **Use Seed Files for Setup**
+Always include a seed file to handle navigation and initial setup:
+
+```typescript
+// Reusable across multiple test files
+test('seed', async ({ page }) => {
+  const blogspotPage = new BlogspotPage(page);
+  await blogspotPage.navigateToBlogspotPage(TestConfig.APP_URL);
+});
+```
+
+### Troubleshooting MCP Test Generation
+
+#### Issue: Generated Tests Not Finding Elements
+
+**Solution:** Update your test plan with exact element identifiers:
+
+```markdown
+- Steps:
+  1. Look for the heading "Dynamic Web Table"
+  2. Find cells containing browser names
+  3. Click column headers with specific names
+```
+
+#### Issue: Locators Too Generic
+
+**Solution:** Use role and accessibility attributes:
+
+```markdown
+- Steps:
+  1. Verify the role="cell" with name "Chrome" is visible
+  2. Click role="columnheader" with name "Network (Mbps)"
+```
+
+#### Issue: Dynamic Content Changes Between Runs
+
+**Solution:** Use pattern matching for dynamic values:
+
+```typescript
+// In test plan, note that values change
+- Expected Results:
+  - CPU percentage is visible (actual value changes dynamically)
+  - Table contains at least 3 browser rows
+```
+
+Then MCP generates:
+
+```typescript
+// Handles dynamic values gracefully
+await expect(page.getByRole('cell', { name: /\d+\.?\d*%/ })).toBeVisible();
+```
+
+---
+
+
 
 ```
 Playwright-TS-Framework/
@@ -120,6 +394,9 @@ Playwright-TS-Framework/
 │   ├── get_api_response_schema.json    # JSON schema for GET responses
 │   ├── post_api_response_schema.json   # JSON schema for POST responses
 │   └── put_api_response_schema.json    # JSON schema for PUT responses
+├── specs/                              # Test plans (MCP)
+│   ├── README.md                       # Test specs directory documentation
+│   └── dynamic_web_table_test_plan.md  # Example test plan in Markdown
 ├── testdata/
 │   ├── post_request_body.json          # Test data for POST requests
 │   └── put_request_body.json           # Test data for PUT requests
@@ -129,10 +406,13 @@ Playwright-TS-Framework/
 │   │   ├── get_api_request.spec.ts
 │   │   ├── post_api_request.spec.ts
 │   │   └── put_api_request.spec.ts
-│   └── webtests/                       # Web UI tests
-│       ├── mytest.spec.ts
-│       ├── paralleltest.spec.ts
-│       └── serialtest.spec.ts
+│   ├── webtests/                       # Web UI tests
+│   │   ├── mytest.spec.ts
+│   │   ├── paralleltest.spec.ts
+│   │   └── serialtest.spec.ts
+│   ├── dynamic-web-table.spec.ts       # Generated test (MCP)
+│   ├── dynamic-web-table-error-handling.spec.ts  # Generated test (MCP)
+│   └── seed.spec.ts                    # Seed file for MCP test generation
 ├── reports/                            # Test reports (generated)
 │   ├── playwright-inbuilt-report/
 │   └── allure-report/
@@ -254,6 +534,7 @@ npm run test:debug
 ### 🎯 Run Specific Test File
 ```bash
 npx playwright test tests/webtests/mytest.spec.ts
+npx playwright test tests/dynamic-web-table.spec.ts  # MCP-generated tests
 ```
 
 ### 🏷️ Run Tests by Tag
@@ -279,6 +560,19 @@ npx playwright test --project=webkit
 ### 🔍 Run Single Test by Name
 ```bash
 npx playwright test -g "Verify Blogspot page URL"
+npx playwright test -g "Dynamic Web Table Functionality Test"  # MCP-generated
+```
+
+### 🧠 Run MCP-Generated Tests
+```bash
+# Run all MCP-generated dynamic table tests
+npx playwright test tests/dynamic-web-table*.spec.ts
+
+# Run specific MCP test with debugging
+npx playwright test tests/dynamic-web-table.spec.ts --headed --debug
+
+# Run and generate report
+npx playwright test tests/dynamic-web-table*.spec.ts --reporter=html
 ```
 
 ### 📊 Run with Report Generation
@@ -291,6 +585,33 @@ npm run allure:open
 ---
 
 ## 📦 Test Organization
+
+### Dynamic Web Table Tests (MCP Generated)
+
+Tests generated using Model Context Protocol from test plans in `specs/` directory.
+
+**Test Files:**
+- `dynamic-web-table.spec.ts` - Functionality tests (table display, sorting)
+- `dynamic-web-table-error-handling.spec.ts` - Error handling and edge cases
+- `seed.spec.ts` - Shared setup for test generation
+
+**Features Tested:**
+- Dynamic table rendering with real-time data
+- Table sorting by multiple columns
+- Data extraction and validation
+- Error states and empty results handling
+
+**Usage:**
+```bash
+# Run all dynamic web table tests
+npx playwright test tests/dynamic-web-table*.spec.ts
+
+# Run specific test
+npx playwright test tests/dynamic-web-table.spec.ts
+
+# Run in headed mode
+npx playwright test tests/dynamic-web-table.spec.ts --headed
+```
 
 ### Web UI Tests (`tests/webtests/`)
 
@@ -736,12 +1057,14 @@ For issues, questions, or suggestions:
 
 ## 🎯 Project Statistics
 
-- **Total Test Files:** 7+ (Web UI + API)
+- **Total Test Files:** 9+ (Web UI + API + MCP-Generated)
 - **Supported Browsers:** Chromium (Firefox & WebKit available)
-- **Languages:** TypeScript, JSON
-- **Test Runners:** Playwright
+- **Languages:** TypeScript, JSON, Markdown
+- **Test Runners:** Playwright with MCP Integration
 - **Reporting Tools:** Allure, HTML, JUnit, JSON
 - **CI/CD:** GitHub Actions, Jenkins
+- **Test Plans:** Dynamic test planning with MCP
+- **Generated Tests:** Dynamic Web Table test suite
 
 ---
 
@@ -757,13 +1080,17 @@ For issues, questions, or suggestions:
 ✅ JSON Schema validation  
 ✅ Page Object Model pattern  
 ✅ Custom fixtures and utilities  
+✅ **MCP-Powered test planning and generation**  
+✅ **Intelligent test code auto-generation**  
+✅ **Dynamic test plan management**  
 
 ---
 
-**Last Updated:** January 17, 2026  
+**Last Updated:** January 18, 2026  
 **Framework Version:** 1.0.0  
 **Playwright Version:** ^1.57.0  
 **Node.js Version:** 20+  
+**MCP Integration:** ✅ Enabled  
 
 ---
 
