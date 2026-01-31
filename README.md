@@ -10,12 +10,22 @@
 
 > A scalable and maintainable test automation framework built using Playwright, TypeScript, and integrated with Allure Reports for real-time test reporting. Supports both **Web UI** and **REST API** testing with advanced data validation and CI. Enhanced with **Model Context Protocol (MCP)** for intelligent test planning and generation.
 
-### 🆕 New Here? **[→ START HERE](./START_HERE.md)** ← Click to get oriented!
+### 🆕 Getting Started (Choose Your Path)
 
-**Quick Links:**
-- ⚡ [5-Minute Quick Start](./QUICKSTART.md) - Get tests running now
-- 🧠 [MCP Setup Guide](./MCP-SETUP.md) - Setup AI test generation
-- 🤝 [Contributing Guide](./CONTRIBUTING.md) - How to contribute
+**Path 1: Run Tests Now** (5 minutes)
+```bash
+git clone <repo-url>
+cd Playwright-TS-Framework
+npm install
+npx playwright install --with-deps
+npm run test
+```
+
+**Path 2: Use AI Test Generation** (10 minutes)  
+→ Install GitHub Copilot → Read [MCP Setup Guide](./MCP-SETUP.md)
+
+**Path 3: Contribute Code** (20 minutes)  
+→ Read [Contributing Guide](./CONTRIBUTING.md)
 
 ---
 
@@ -78,9 +88,27 @@ This framework provides a robust foundation for automated testing of web applica
 
 ### 3. **Custom Fixtures**
    - Pre-built API fixtures for test data generation
+   - Accessibility fixtures (axe) for automated a11y checks (see `fixtures/axe-test.ts`)
+   - One-line visual checks using Playwright snapshots (`expect(page).toHaveScreenshot()`)
    - Random test data generation using faker.js
    - DateTime handling with Luxon
    - Environment variable management with dotenv
+
+#### Accessibility Fixture (axe)
+Use the included fixture to run axe accessibility checks in your tests:
+
+```typescript
+// import from the fixture to use axe
+import { test, expect } from './fixtures/axe-test';
+
+test('homepage has no accessibility violations', async ({ page, makeAxeBuilder }) => {
+  await page.goto('https://example.com');
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations.length).toBe(0);
+});
+```
+
+**Tip:** Install `axe-playwright` as a dev dependency: `npm i -D axe-playwright`. If TypeScript reports missing types, add a small declaration file (`types/axe-playwright.d.ts`) or include `fixtures/` in your `tsconfig.json` `include` and restart the TS server.
 
 ### 4. **API Testing Capabilities**
    - Full REST API testing support
@@ -462,18 +490,33 @@ npm install
 npx playwright install --with-deps
 ```
 
-### 5️⃣ Configure Environment Variables
-Create a `.env` file in the root directory:
-```dotenv
-AUTH_USERNAME=admin
-AUTH_PASSWORD=password123
-```
-
-### 6️⃣ Verify Installation
+### 5️⃣ Verify Installation
 ```bash
 npx playwright --version
-npm run test:debug
+npm run test      # Run a quick test
 ```
+
+✅ **All Done!** Your tests are ready to run.
+
+---
+
+## ⚡ Common Commands (Quick Reference)
+
+```bash
+npm run test                          # Run all tests
+npm run test:headed                  # See browser window
+npm run test:debug                   # Debug mode
+npx playwright test -g "test name"   # Run specific test
+npm run allure:generate              # Generate reports
+npm run allure:open                  # View reports
+npx playwright show-report           # Show Playwright report
+```
+
+---
+
+## 🚀 Running Tests
+
+### 🧪 Basic Test Run - Run All Regression Tests
 
 ---
 

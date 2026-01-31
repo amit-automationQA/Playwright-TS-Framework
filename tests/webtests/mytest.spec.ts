@@ -1,4 +1,5 @@
-import { test, expect, Locator } from '@playwright/test';
+import { test, expect } from '../../fixtures/axe-test'; // Using custom axe-test fixture
+import { Locator } from '@playwright/test';
 import { TestConfig } from '../../test.config';
 import { BlogspotPage } from '../../pages/BlogspotPage';
 
@@ -9,13 +10,10 @@ test.beforeEach(async ({ page }) => {
     //Navigate to Blogspot page
     await blogspotPage.navigateToBlogspotPage(TestConfig.APP_URL);
     await expect.soft(page).toHaveURL(TestConfig.APP_URL);
+    await expect.soft(page).toHaveScreenshot({ maxDiffPixelRatio: 0.02 }); //Visual check of landing page
 });
 
 test('Verify Blogspot page URL @regression', async ({ page }) => {
-
-    //Navigate to Blogspot page
-    await blogspotPage.navigateToBlogspotPage(TestConfig.APP_URL);
-    await expect.soft(page).toHaveURL(TestConfig.APP_URL);
     await expect.soft(blogspotPage.nameTextBox).toBeVisible();
     await expect.soft(blogspotPage.nameTextBox).toBeEnabled();
 
@@ -95,8 +93,6 @@ test('Verify Duplicate Options in Dropdowns in Blogspot page URL @regression', a
 
 test('Verify Sorted Options in Dropdowns in Blogspot page URL @regression', async ({ page }) => {
 
-
-    //Check if dropdown options are sorted
     //Sorted Dropdown
     await expect.soft(blogspotPage.multiSelectDropdownOptions).toHaveCount(10);
     const {
@@ -109,4 +105,21 @@ test('Verify Sorted Options in Dropdowns in Blogspot page URL @regression', asyn
 
     // Assertions
     expect.soft(sortedDropdownValuesSorted).toEqual([...sortedDropdownValues].sort());
+});
+
+test('Accessibility Test for Blogspot Page @accessibility', async ({ page, runAccessibilityScan }) => {
+    // Check accessibility issues on the Blogspot page
+    const results = await runAccessibilityScan({
+        attachOnlyOnViolation: false, // Always attach results
+        failOnImpact: ['minor', 'moderate', 'serious', 'critical'], // Fail on all impact levels
+    });
+    console.log(`Found ${results.violations.length} accessibility violations.`); // Log total violations
+    for (const violation of results.violations) {
+        console.log(`Violation: ${violation.id}`);
+        console.log(`Impact: ${violation.impact}`);
+        console.log(`Description: ${violation.description}`);
+        console.log(`Help: ${violation.help}`);
+        console.log('-----------------------------------');
+    }
+    expect.soft(results.violations.length).toBe(0);
 });

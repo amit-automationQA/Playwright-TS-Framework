@@ -87,4 +87,8 @@ Pick one:
 - **→ [CONTRIBUTING.md](./CONTRIBUTING.md)** - Contribute & develop
 - **→ [README.md](./README.md)** - Full documentation
 
+**Accessibility & Visual Testing:**
+- Accessibility fixture: `fixtures/axe-test.ts` (see `README.md` and `MCP-SETUP.md` for examples)
+- Visual testing: one-line snapshot checks via Playwright `expect(page).toHaveScreenshot()` (see `QUICKSTART.md` tips)
+
 **Let's get testing!** 🚀

@@ -40,6 +40,27 @@ git checkout -b feature/your-feature-name
 - Write tests in `tests/webtests/`
 - Follow Page Object Model pattern
 
+**Accessibility & Visual Tests (Quick Notes):**
+- Accessibility: import the provided fixture to run axe checks:
+
+```typescript
+import { test, expect } from '../../fixtures/axe-test';
+
+test('homepage a11y', async ({ page, makeAxeBuilder }) => {
+  await page.goto('https://example.com');
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations.length).toBe(0);
+});
+```
+
+- Visual: quick one-line snapshot assertion:
+
+```typescript
+await expect(page).toHaveScreenshot('homepage.png'); // use --update-snapshots to create/update baseline
+```
+
+Include visual tests sparingly and keep snapshots small and deterministic.
+
 **For API Tests:**
 - Add tests in `tests/apitests/`
 - Update fixtures if needed

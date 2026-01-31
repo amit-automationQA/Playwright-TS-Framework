@@ -46,6 +46,18 @@ npm run allure:open            # View reports
 
 ---
 
+## ✅ Visual & Accessibility Quick Tips
+
+- **One-line visual check:**
+
+```typescript
+await expect(page).toHaveScreenshot('homepage.png'); // create/update with `npx playwright test --update-snapshots`
+```
+
+- **Accessibility fixture:** Use `fixtures/axe-test.ts` to run axe checks in your test by importing `test` from the fixture and calling `makeAxeBuilder()`.
+
+---
+
 ## 🧠 Next: AI-Powered Tests?
 
 To generate tests automatically with AI:
