@@ -32,28 +32,37 @@ npm run test
 ## 📋 Table of Contents
 
 - [Overview](#overview)
+- [Why This Framework?](#why-this-framework)
 - [Key Features](#key-features)
-- [Tech Stack](#tech-stack)
 - [Project Structure](#project-structure)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Running Tests](#running-tests)
 - [Test Planning with MCP](#test-planning-with-mcp)
+- [Setup Instructions](#setup-instructions)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Common Commands](#common-commands-quick-reference)
+- [Running Tests](#running-tests)
+- [Configuration](#configuration)
 - [Test Organization](#test-organization)
 - [Custom Fixtures](#custom-fixtures)
 - [Reporting](#reporting)
 - [CI/CD Integration](#cicd-integration)
 - [Best Practices](#best-practices)
 - [Troubleshooting](#troubleshooting)
+- [Reports Location](#reports-location)
+- [Additional Resources](#additional-resources)
+- [Contributing](#contributing)
+- [Support & Feedback](#support--feedback)
+- [Quick Reference](#quick-reference)
+- [Project Statistics](#project-statistics)
+- [Key Achievements](#key-achievements)
 
 ---
 
-## 🎯 Overview
+## 🎯Overview
 
 This framework provides a robust foundation for automated testing of web applications and REST APIs. It leverages Playwright's powerful cross-browser capabilities combined with TypeScript's type safety and the popular Page Object Model (POM) pattern for maintainable test code.
 
-## ✨ Why This Framework?
+## ✨Why This Framework?
 
 - 🌐 **Cross-browser testing** powered by Playwright (Chromium, Firefox, WebKit)
 - 🎭 **Web UI Testing** - Full-featured browser automation
@@ -72,7 +81,7 @@ This framework provides a robust foundation for automated testing of web applica
 
 ---
 
-## 🌟 Key Features
+## 🌟Key Features
 
 ### 1. **Comprehensive Test Reporting**
    - **Allure Reports** - Rich, interactive test reports
@@ -148,7 +157,7 @@ test('homepage has no accessibility violations', async ({ page, makeAxeBuilder }
 
 ---
 
-## Project Structure
+## 📁Project Structure
 
 A brief overview of the repository layout:
 
@@ -165,9 +174,9 @@ reports/
 
 ```
 
-## 🧠 Test Planning with MCP
+## 🧠Test Planning with MCP
 
-### Overview
+### Summary
 
 The framework integrates **Model Context Protocol (MCP)** for intelligent test planning and automatic test generation. This feature enables you to:
 
@@ -482,7 +491,7 @@ Playwright-TS-Framework/
 
 ---
 
-## ⚙️ Setup Instructions
+## ⚙️Setup Instructions
 
 ### 1️⃣ Clone the Repository
 ```bash
@@ -521,7 +530,7 @@ npm run test      # Run a quick test
 
 ---
 
-## ⚡ Common Commands (Quick Reference)
+## ⚡Common Commands (Quick Reference)
 
 ```bash
 npm run test                          # Run all tests
@@ -535,13 +544,13 @@ npx playwright show-report           # Show Playwright report
 
 ---
 
-## 🚀 Running Tests
+## 🚀Running Tests
 
 ### 🧪 Basic Test Run - Run All Regression Tests
 
 ---
 
-## ⚙️ Configuration
+## ⚙️Configuration
 
 ### Playwright Configuration (`playwright.config.ts`)
 
@@ -655,7 +664,7 @@ npm run allure:open
 
 ---
 
-## 📦 Test Organization
+## 📦Test Organization
 
 ### Dynamic Web Table Tests (MCP Generated)
 
@@ -734,9 +743,9 @@ test('Get Booking Details by ID @api', async ({ bookingId, request }) => {
 
 ---
 
-## 🔧 Custom Fixtures
+## 🔧Custom Fixtures
 
-### API Fixtures (`fixtures/apiFixtures.ts`)
+### API Fixtures (`fixtures/apiFixtures.ts`) 
 
 Custom fixtures provide reusable test data and utilities:
 
@@ -791,7 +800,7 @@ test('Create Booking @api', async ({
 
 ---
 
-## 📊 Reporting
+## 📊Reporting
 
 ### 📈 Allure Reports
 
@@ -867,7 +876,7 @@ npm run allure:generate && npm run allure:open
 
 ---
 
-## 🔄 CI/CD Integration
+## 🔄CI/CD Integration
 
 ### 🐙 GitHub Actions
 
@@ -919,7 +928,7 @@ npm run allure:generate && npm run allure:open
 
 ---
 
-## 🎓 Best Practices
+## 🎓Best Practices
 
 ### 1. **Page Object Model**
 ```typescript
@@ -1001,7 +1010,7 @@ test('Test login')
 
 ---
 
-## 🐛 Troubleshooting
+## 🐛Troubleshooting
 
 ### Common Issues & Solutions
 
@@ -1063,7 +1072,7 @@ chmod +x node_modules/.bin/*
 
 ---
 
-## 📈 Reports Location
+## 📈Reports Location
 
 After running tests, reports are available at:
 
@@ -1076,7 +1085,7 @@ After running tests, reports are available at:
 
 ---
 
-## 📖 Additional Resources
+## 📖Additional Resources
 
 - 📚 [Playwright Documentation](https://playwright.dev/docs/intro)
 - 📘 [TypeScript Handbook](https://www.typescriptlang.org/docs/)
@@ -1088,7 +1097,7 @@ After running tests, reports are available at:
 
 ---
 
-## 🤝 Contributing
+## 🤝Contributing
 
 Contributions are welcome! Please follow these guidelines:
 
@@ -1100,7 +1109,7 @@ Contributions are welcome! Please follow these guidelines:
 
 ---
 
-## 📞 Support & Feedback
+## 📞Support & Feedback
 
 For issues, questions, or suggestions:
 - 🐛 [Open an issue](https://github.com/yourusername/Playwright-TS-Framework/issues)
@@ -1110,7 +1119,7 @@ For issues, questions, or suggestions:
 
 ---
 
-## 📋 Quick Reference
+## 📋Quick Reference
 
 | Task | Command |
 |------|---------|
@@ -1126,7 +1135,7 @@ For issues, questions, or suggestions:
 
 ---
 
-## 🎯 Project Statistics
+## 🎯Project Statistics
 
 - **Total Test Files:** 9+ (Web UI + API + MCP-Generated)
 - **Supported Browsers:** Chromium (Firefox & WebKit available)
@@ -1139,7 +1148,7 @@ For issues, questions, or suggestions:
 
 ---
 
-## 🏆 Key Achievements
+## 🏆Key Achievements
 
 ✅ Enterprise-grade test automation framework  
 ✅ Supports both Web UI and API testing  
