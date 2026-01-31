@@ -67,6 +67,7 @@ This framework provides a robust foundation for automated testing of web applica
 - 🌐 **Cross-browser testing** powered by Playwright (Chromium, Firefox, WebKit)
 - 🎭 **Web UI Testing** - Full-featured browser automation
 - 🔌 **REST API Testing** - Complete API testing capabilities
+- ♿️ **Accessibility testing** - Built-in `axe` fixture for automated accessibility checks
 - 📊 **Real-time test analytics** with Allure Reports
 - 📸 **Automatic screenshot capture** on test failure
 - 🚀 **Easy CI/CD integration** (GitHub Actions, Jenkins)
