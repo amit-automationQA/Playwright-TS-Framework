@@ -446,9 +446,11 @@ await expect(page.getByRole('cell', { name: /\d+\.?\d*%/ })).toBeVisible();
 Playwright-TS-Framework/
 ├── .github/
 │   └── workflows/
-│       └── playwright.yml              # GitHub Actions CI/CD workflow
+│       ├── playwright.yml              # GitHub Actions CI/CD workflow
+│       └── copilot-setup-steps.yml     # Copilot/MCP helper workflow
 ├── fixtures/
-│   └── apiFixtures.ts                  # Custom Playwright fixtures for API testing
+│   ├── apiFixtures.ts                  # Custom Playwright fixtures for API testing
+│   └── axe-test.ts                     # Accessibility fixture (axe)
 ├── pages/
 │   └── BlogspotPage.ts                 # Page Object Model - Web UI pages
 ├── schemas/
@@ -469,6 +471,7 @@ Playwright-TS-Framework/
 │   │   └── put_api_request.spec.ts
 │   ├── webtests/                       # Web UI tests
 │   │   ├── mytest.spec.ts
+│   │   ├── mytest.spec.ts-snapshots/   # Visual snapshot dir
 │   │   ├── paralleltest.spec.ts
 │   │   └── serialtest.spec.ts
 │   ├── dynamic-web-table.spec.ts       # Generated test (MCP)
@@ -481,12 +484,17 @@ Playwright-TS-Framework/
 ├── test-results/                       # Test results (generated)
 ├── .env                                # Environment variables (local)
 ├── .gitignore                          # Git ignore rules
+├── .vscode/                            # Editor settings (optional)
 ├── Jenkinsfile                         # Jenkins pipeline configuration
+├── MCP-SETUP.md                        # MCP / Copilot setup notes
+├── CONTRIBUTING.md                     # Contribution guide
+├── QUICKSTART.md                       # Quick start guide
+├── START_HERE.md                       # Getting started overview
 ├── package.json                        # Dependencies and scripts
+├── package-lock.json                   # Lockfile
 ├── playwright.config.ts                # Playwright configuration
 ├── test.config.ts                      # Application configuration
-├── README.md                           # This file
-└── README.md.txt                       # Previous documentation
+└── README.md                           # This file
 ```
 
 ---
