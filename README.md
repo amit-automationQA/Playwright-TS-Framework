@@ -148,6 +148,23 @@ test('homepage has no accessibility violations', async ({ page, makeAxeBuilder }
 
 ---
 
+## Project Structure
+
+A brief overview of the repository layout:
+
+```
+tests/
+  ├── apitests/
+  ├── webtests/
+  └── [generated]/
+pages/
+fixtures/
+specs/
+schemas/
+reports/
+
+```
+
 ## 🧠 Test Planning with MCP
 
 ### Overview
@@ -473,12 +490,16 @@ git clone https://github.com/yourusername/Playwright-TS-Framework.git
 cd Playwright-TS-Framework
 ```
 
+## Prerequisites
+
 ### 2️⃣ Verify Prerequisites
 ```bash
 node --version    # Should be v20 or later
 npm --version     # Should be v9 or later
 git --version
 ```
+
+## Installation
 
 ### 3️⃣ Install Dependencies
 ```bash
