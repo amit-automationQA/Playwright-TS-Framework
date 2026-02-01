@@ -10,7 +10,7 @@ test.beforeEach(async ({ page }) => {
     //Navigate to Blogspot page
     await blogspotPage.navigateToBlogspotPage(TestConfig.APP_URL);
     await expect.soft(page).toHaveURL(TestConfig.APP_URL);
-    await expect.soft(page).toHaveScreenshot({ maxDiffPixelRatio: 0.02 }); //Visual check of landing page
+    await expect.soft(page).toHaveScreenshot(); //Visual check of landing page
 });
 
 test('Verify Blogspot page URL @regression', async ({ page }) => {
