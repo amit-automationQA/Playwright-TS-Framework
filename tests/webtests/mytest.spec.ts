@@ -9,8 +9,19 @@ test.beforeEach(async ({ page }) => {
     blogspotPage = new BlogspotPage(page);
     //Navigate to Blogspot page
     await blogspotPage.navigateToBlogspotPage(TestConfig.APP_URL);
+    await page.waitForLoadState('networkidle');
+
+    await page.addStyleTag({
+        content: `
+    *, *::before, *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+  `
+    });
+    
     await expect.soft(page).toHaveURL(TestConfig.APP_URL);
-    await expect.soft(page).toHaveScreenshot(); //Visual check of landing page
+    await expect.soft(page).toHaveScreenshot({ fullPage: true }); //Visual check of landing page
 });
 
 test('Verify Blogspot page URL @regression', async ({ page }) => {
